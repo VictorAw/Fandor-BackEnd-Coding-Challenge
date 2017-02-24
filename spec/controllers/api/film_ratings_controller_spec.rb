@@ -47,15 +47,16 @@ RSpec.describe Api::FilmRatingsController, type: :controller do
       end
       
       describe "if rating exists" do
-        it "renders the newly created object" do
-          patch :update, params: {id: @film_rating.id, film_rating: {rating: 5, film_id: @film.id, user_id: 1}, format: :json}
+        it "updates the rating and renders the newly created object" do
+          patch :update, params: {film_rating: {rating: 5, film_id: @film.id, user_id: 1}, format: :json}
+          expect(FilmRating.find_by_film_id_and_user_id(@film_rating.film_id, @film_rating.user_id).rating).to eq(5)
           expect(response).to render_template(:show)
         end
       end
       
       describe "if rating does not exist" do
         it "renders a 404 error" do
-          patch :update, params: {id: 500, film_rating: {rating: 5, film_id: @film.id, user_id: 1}, format: :json}
+          patch :update, params: {film_rating: {rating: 5, film_id: 500, user_id: 1}, format: :json}
           expect(response.status).to eq(404)
         end
       end
@@ -78,13 +79,9 @@ RSpec.describe Api::FilmRatingsController, type: :controller do
         @film_rating.destroy
       end
 
-      it "does not modify the object" do
-        patch :update, params: {id: @film_rating.id, film_rating: {invalid_param: 3}, format: :json}
-        expect(response.status).to eq(200)
-        film_rating = FilmRating.find_by_id(@film_rating.id)
-        expect(film_rating.rating).to eq(3)
-        expect(film_rating.film_id).to eq(@film.id)
-        expect(film_rating.user_id).to eq(1)
+      it "returns a 404 error" do
+        patch :update, params: {film_rating: {invalid_param: 3}, format: :json}
+        expect(response.status).to eq(404)
       end
     end
   end

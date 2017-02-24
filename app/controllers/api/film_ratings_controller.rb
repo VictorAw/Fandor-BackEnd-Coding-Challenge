@@ -13,7 +13,9 @@ class Api::FilmRatingsController < ApplicationController
   end
 
   def update
-    @film_rating = FilmRating.find_by_id(params[:id])
+    film_id = params[:film_rating][:film_id]
+    user_id = params[:film_rating][:user_id]
+    @film_rating = FilmRating.find_by_film_id_and_user_id(film_id, user_id)
 
     if @film_rating
       if @film_rating.update(film_ratings_params)

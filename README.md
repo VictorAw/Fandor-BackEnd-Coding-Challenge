@@ -12,7 +12,8 @@ GET api/films/:id
 ### Create
 POST api/film_relations
 ### Delete
-DELETE api/film_relations
+DELETE api/film_relations  
+(Film Relations use origin_film_id and related_film_id to find the relation to destroy)
 
 ### Data format for posting and deleting film relations
 {  
@@ -26,8 +27,9 @@ DELETE api/film_relations
 ### Create
 POST api/film_ratings
 ### Update
-PATCH api/film_ratings/:id  
-PUT api/film_ratings/:id
+(Update methods use film_id and user_id to find the rating)  
+PATCH api/film_ratings
+PUT api/film_ratings
 
 ### Data format for posting and patching a film rating
 {  
