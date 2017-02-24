@@ -16,10 +16,15 @@ DELETE api/film_relations
 
 ### Data format for posting and deleting film relations
 {
+
   film_relation: {
+
     origin_film_id: &lt;number>
+
     related_film_id: &lt;number>
+
   }
+
 }
 
 ## Film Ratings
@@ -32,11 +37,17 @@ PUT api/film_ratings/:id
 
 ### Data format for posting and patching a film rating
 {
+
   film_rating: {
+
     rating: &lt;number>
+
     film_id: &lt;number>
+
     user_id: &lt;number> 
+
   }
+
 }
 
 
