@@ -1,0 +1,2 @@
+module Api::FilmRelationsHelper
+end
