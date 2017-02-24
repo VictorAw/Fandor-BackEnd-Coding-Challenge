@@ -28,7 +28,7 @@ DELETE api/film_relations
 POST api/film_ratings
 ### Update
 (Update methods use film_id and user_id to find the rating)  
-PATCH api/film_ratings
+PATCH api/film_ratings  
 PUT api/film_ratings
 
 ### Data format for posting and patching a film rating
